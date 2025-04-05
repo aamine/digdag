@@ -509,7 +509,7 @@ clean {
 task release() {
     release.mustRunAfter cli
     dependsOn subprojects.findAll{it.name != "digdag-docs" }.publishMavenJavaPublicationToMavenCentralRepository
-    //ToDo upload executable to GitHub
+    //ToDo upload executable to GitHub release page using GitHub API after the release finishes
     doLast {
         println "Released ${project.version}."
     }
