@@ -135,7 +135,7 @@ public class ScheduleExecutorTest
                 .set("daily>", "12:00:00");
 
         // Indicate that there is an active attempt for this workflow
-        when(sessionStore.getActiveAttemptsOfWorkflow(eq(PROJECT_ID), eq(WORKFLOW_NAME), anyInt(), any(Optional.class)))
+        when(sessionStore.getActiveAttemptsOfWorkflow(eq(PROJECT_ID), eq(WORKFLOW_NAME), anyInt(), any(Optional.<Long>class)))
                 .thenReturn(ImmutableList.of(attempt));
 
         // Run the schedule executor...
@@ -157,7 +157,7 @@ public class ScheduleExecutorTest
                 .set("daily>", "12:00:00");
 
         // Indicate that there is an active attempt for this workflow
-        when(sessionStore.getActiveAttemptsOfWorkflow(eq(PROJECT_ID), eq(WORKFLOW_NAME), anyInt(), any(Optional.class)))
+        when(sessionStore.getActiveAttemptsOfWorkflow(eq(PROJECT_ID), eq(WORKFLOW_NAME), anyInt(), any(Optional.<Long>class)))
                 .thenReturn(ImmutableList.of(attempt));
 
         // Run the schedule executor...
@@ -180,7 +180,7 @@ public class ScheduleExecutorTest
                 .set("daily>", "12:00:00");
 
         // Indicate that there is no active attempt for this workflow
-        when(sessionStore.getActiveAttemptsOfWorkflow(eq(PROJECT_ID), eq(WORKFLOW_NAME), anyInt(), any(Optional.class)))
+        when(sessionStore.getActiveAttemptsOfWorkflow(eq(PROJECT_ID), eq(WORKFLOW_NAME), anyInt(), any(Optional.<Long>class)))
                 .thenReturn(ImmutableList.of());
 
         // Run the schedule executor at now + 31
@@ -203,7 +203,7 @@ public class ScheduleExecutorTest
                 .set("daily>", "12:00:00");
 
         // Indicate that there is no active attempt for this workflow
-        when(sessionStore.getActiveAttemptsOfWorkflow(eq(PROJECT_ID), eq(WORKFLOW_NAME), anyInt(), any(Optional.class)))
+        when(sessionStore.getActiveAttemptsOfWorkflow(eq(PROJECT_ID), eq(WORKFLOW_NAME), anyInt(), any(Optional.<Long>class)))
                 .thenReturn(ImmutableList.of());
 
         // Run the schedule executor at now + 29
@@ -225,7 +225,7 @@ public class ScheduleExecutorTest
                 .set("daily>", "12:00:00");
 
         // Indicate that there is no active attempt for this workflow
-        when(sessionStore.getActiveAttemptsOfWorkflow(eq(PROJECT_ID), eq(WORKFLOW_NAME), anyInt(), any(Optional.class)))
+        when(sessionStore.getActiveAttemptsOfWorkflow(eq(PROJECT_ID), eq(WORKFLOW_NAME), anyInt(), any(Optional.<Long>class)))
                 .thenReturn(ImmutableList.of());
 
         // Run the schedule executor at now + 1
