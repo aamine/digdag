@@ -30,6 +30,14 @@ module.exports = function buildWebpackConfig ({ build = false }) {
     },
     target: 'web',
     devtool: build ? 'source-map' : 'cheap-module-source-map',
+    resolve: {
+      extensions: ['*', '.ts', '.tsx', '.js', '.jsx'],
+      fallback: {
+        "crypto": false,
+        "buffer": require.resolve('buffer/'),
+        "path": require.resolve('path-browserify')
+      }
+    },
     module: {
       rules: [{
         test: /\.(js|jsx|ts|tsx)$/,
@@ -107,6 +115,9 @@ module.exports = function buildWebpackConfig ({ build = false }) {
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': `'${build ? 'production' : 'development'}'`
+      }),
+      new webpack.ProvidePlugin({
+        Buffer: ['buffer', 'Buffer']
       })
     ],
     devServer: {
