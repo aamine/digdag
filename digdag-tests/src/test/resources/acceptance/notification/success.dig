@@ -1,4 +1,0 @@
-timezone: UTC
-
-+succeed:
-  echo>: foobar

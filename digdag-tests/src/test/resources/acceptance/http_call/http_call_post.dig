@@ -1,6 +1,0 @@
-+http_call:
-  http_call>: ${test_uri}
-  method: POST
-  content:
-    k: v
-    foo: bar

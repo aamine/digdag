@@ -1,7 +1,0 @@
-timezone: UTC
-
-sla:
-  time: ${TIME}
-
-+sleep:
-  sh>: "sleep 10"

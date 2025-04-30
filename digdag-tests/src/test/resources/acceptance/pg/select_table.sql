@@ -1,1 +1,0 @@
-SELECT * FROM src_tbl ORDER BY id

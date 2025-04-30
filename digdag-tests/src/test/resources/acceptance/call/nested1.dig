@@ -1,5 +1,0 @@
-+nested1_out:
-  sh>: echo "${typeof _workdir}" > ${outdir}/nested1.out
-
-+nested1:
-  call>: nested2/nested2.dig

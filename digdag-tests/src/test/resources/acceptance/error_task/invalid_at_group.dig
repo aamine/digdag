@@ -1,5 +1,0 @@
-+started:
-  sh>: touch ${outdir}/started.out
-_error:
-  echo>: invalid
-  sh>: echo duplicated

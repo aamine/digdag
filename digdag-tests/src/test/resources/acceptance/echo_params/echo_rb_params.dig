@@ -1,6 +1,0 @@
-_export:
-  rb:
-    require: 'scripts/echo_params'
-
-+foo:
-  rb>: EchoParams.echo_params

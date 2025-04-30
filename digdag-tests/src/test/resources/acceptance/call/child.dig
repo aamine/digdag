@@ -1,2 +1,0 @@
-+hello:
-  sh>: pwd > ${outdir}/${name}.out

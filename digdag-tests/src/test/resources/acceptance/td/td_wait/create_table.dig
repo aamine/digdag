@@ -1,3 +1,0 @@
-+create:
-  td_ddl>:
-  create_tables: ["${table}"]

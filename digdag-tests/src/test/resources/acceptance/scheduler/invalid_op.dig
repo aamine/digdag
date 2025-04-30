@@ -1,8 +1,0 @@
-timezone: "Asia/Tokyo"
-
-schedule:
-  minutes_interval>: 1
-  wrong>: 1
-
-+touch_foo_out:
-  sh>: "touch foo.out"

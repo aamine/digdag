@@ -1,8 +1,0 @@
-timezone: UTC
-
-schedule:
-  hourly>: 09:00
-
-+foo:
-  sh>: "touch foo.out"
-

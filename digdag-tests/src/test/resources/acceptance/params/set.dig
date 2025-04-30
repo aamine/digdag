@@ -1,6 +1,0 @@
-timezone: UTC
-
-+param_set_test:
-  param_set>:
-  key1: value1
-  key2: value2

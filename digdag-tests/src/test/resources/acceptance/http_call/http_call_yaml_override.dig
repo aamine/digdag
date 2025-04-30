@@ -1,3 +1,0 @@
-+http_call:
-  http_call>: ${test_uri}
-  content_type_override: application/x-yaml; charset=utf-8

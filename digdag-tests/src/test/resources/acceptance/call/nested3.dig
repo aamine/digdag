@@ -1,2 +1,0 @@
-+nested3_out:
-  sh>: echo "${_workdir}" > ${outdir}/nested3.out

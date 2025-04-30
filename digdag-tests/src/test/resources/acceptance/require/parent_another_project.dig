@@ -1,3 +1,0 @@
-+require_by_project:
-  require>: child_another_project
-  __CHILD_PROJECT__

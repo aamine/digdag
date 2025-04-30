@@ -1,7 +1,0 @@
-+wait:
-  +query:
-    td_wait>:
-      data: 'select count(*) >= ${wait_rows} from nasdaq;'
-
-+perform:
-  sh>: touch ${outfile}

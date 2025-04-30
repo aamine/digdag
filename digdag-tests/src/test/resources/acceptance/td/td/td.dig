@@ -1,8 +1,0 @@
-timezone: UTC
-
-+run:
-  td>: query.sql
-  database: sample_datasets
-
-+post:
-  sh>: touch ${outfile}

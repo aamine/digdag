@@ -1,9 +1,0 @@
-timezone: UTC
-
-+run:
-  td>: query.sql
-  preview: true
-  create_table: result
-
-+post:
-  sh>: touch ${outfile}
