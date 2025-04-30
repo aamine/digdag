@@ -361,15 +361,6 @@ clean {
     delete 'pkg'
 }
 
-task release() {
-    release.mustRunAfter cli
-    dependsOn subprojects.findAll{it.name != "digdag-docs" }.publishMavenJavaPublicationToMavenCentralRepository
-    //ToDo upload executable to GitHub
-    doLast {
-        println "Released ${project.version}."
-    }
-}
-
 check.dependsOn('releaseCheck')
 
 task setVersion {
