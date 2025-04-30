@@ -1,7 +1,6 @@
 
 dependencies {
     compile project(':digdag-client')
-    compile project(':digdag-plugin-utils')
     compile project(':digdag-spi')
 
     compile ("com.google.inject:guice:${project.ext.guiceVersion}") {
