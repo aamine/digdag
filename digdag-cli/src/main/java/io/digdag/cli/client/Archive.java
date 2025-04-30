@@ -60,10 +60,6 @@ public class Archive
 
         try (DigdagEmbed digdag = new DigdagEmbed.Bootstrap()
                 .setSystemConfig(systemConfig)
-                .withWorkflowExecutor(false)
-                .withScheduleExecutor(false)
-                .withLocalAgent(false)
-                .withTaskQueueServer(false)
                 .addModules(binder -> {
                     binder.bind(YamlMapper.class).in(Scopes.SINGLETON);
                     binder.bind(Archiver.class).in(Scopes.SINGLETON);

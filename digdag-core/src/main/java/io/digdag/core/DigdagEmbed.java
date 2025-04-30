@@ -21,19 +21,8 @@ import com.google.inject.Scopes;
 import com.google.inject.util.Modules;
 import io.digdag.commons.ThrowablesUtil;
 import io.digdag.core.acroute.AccountRoutingModule;
-import io.digdag.core.database.TransactionManager;
 import io.digdag.core.notification.NotificationModule;
-import io.digdag.core.queue.QueueModule;
-import io.digdag.core.database.DatabaseModule;
-import io.digdag.core.workflow.WorkflowModule;
-import io.digdag.core.workflow.WorkflowExecutorModule;
-import io.digdag.core.schedule.ScheduleModule;
-import io.digdag.core.schedule.ScheduleExecutorModule;
 import io.digdag.core.config.ConfigModule;
-import io.digdag.core.archive.ProjectArchiveLoader;
-import io.digdag.core.agent.AgentModule;
-import io.digdag.core.agent.LocalAgentModule;
-import io.digdag.core.storage.StorageModule;
 import io.digdag.core.log.LogModule;
 import io.digdag.core.plugin.PluginSet;
 import io.digdag.core.plugin.DynamicPluginModule;
@@ -56,11 +45,6 @@ public class DigdagEmbed
         private final List<Function<? super List<Module>, ? extends Iterable<? extends Module>>> moduleOverrides = new ArrayList<>();
         private ConfigElement systemConfig = ConfigElement.empty();
         private PluginSet systemPlugins = PluginSet.empty();
-        private boolean withWorkflowExecutor = true;
-        private boolean withScheduleExecutor = true;
-        private boolean withLocalAgent = true;
-        private boolean withExtensionLoader = true;
-        private boolean withTaskQueueServer = true;
         private Map<String, String> environment = ImmutableMap.of();
 
         public Bootstrap addModules(Module... additionalModules)
@@ -108,36 +92,6 @@ public class DigdagEmbed
             return this;
         }
 
-        public Bootstrap withWorkflowExecutor(boolean v)
-        {
-            this.withWorkflowExecutor = v;
-            return this;
-        }
-
-        public Bootstrap withScheduleExecutor(boolean v)
-        {
-            this.withScheduleExecutor = v;
-            return this;
-        }
-
-        public Bootstrap withLocalAgent(boolean v)
-        {
-            this.withLocalAgent = v;
-            return this;
-        }
-
-        public Bootstrap withExtensionLoader(boolean v)
-        {
-            this.withExtensionLoader = v;
-            return this;
-        }
-
-        public Bootstrap withTaskQueueServer(boolean v)
-        {
-            this.withTaskQueueServer = v;
-            return this;
-        }
-
         public DigdagEmbed initialize()
         {
             return build(true);
@@ -181,18 +135,12 @@ public class DigdagEmbed
                         .registerModule(new JacksonTimeModule()),
                     new DynamicPluginModule(),
                     new SystemPluginModule(systemPlugins),
-                    new DatabaseModule(withTaskQueueServer),
-                    new AgentModule(),
                     new LogModule(),
-                    new ScheduleModule(),
                     new ConfigModule(),
-                    new WorkflowModule(),
                     new NotificationModule(),
-                    new StorageModule(),
                     new EnvironmentModule(environment),
                     new AccountRoutingModule(),
                     (binder) -> {
-                        binder.bind(ProjectArchiveLoader.class);
                         binder.bind(ConfigElement.class).toInstance(systemConfig);
                         binder.bind(Config.class).toProvider(SystemConfigProvider.class);
                         binder.bind(TempFileManager.class).toProvider(TempFileManagerProvider.class).in(Scopes.SINGLETON);
@@ -200,27 +148,6 @@ public class DigdagEmbed
                         binder.bind(Limits.class).asEagerSingleton();
                     }
                 ));
-            if (withWorkflowExecutor) {
-                builder.add(new WorkflowExecutorModule());
-            }
-            if (withScheduleExecutor) {
-                builder.add(new ScheduleExecutorModule());
-            }
-            if (withLocalAgent) {
-                builder.add(new LocalAgentModule());
-            }
-            if (withWorkflowExecutor) {
-                builder.add((binder) -> {
-                    binder.bind(LocalSite.class).in(Scopes.SINGLETON);
-                });
-            }
-            if (withExtensionLoader) {
-                builder.add(new ExtensionServiceLoaderModule());
-            }
-            if (withTaskQueueServer) {
-                builder.add(new QueueModule());
-
-            }
             return builder.build();
         }
     }
@@ -281,16 +208,6 @@ public class DigdagEmbed
     public Injector getInjector()
     {
         return injector;
-    }
-
-    public LocalSite getLocalSite()
-    {
-        return getInjector().getInstance(LocalSite.class);
-    }
-
-    public TransactionManager getTransactionManager()
-    {
-        return getInjector().getInstance(TransactionManager.class);
     }
 
     @Override

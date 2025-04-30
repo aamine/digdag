@@ -96,10 +96,6 @@ public class Start
 
         Injector injector = new DigdagEmbed.Bootstrap()
             .setSystemConfig(systemConfig)
-            .withWorkflowExecutor(false)
-            .withScheduleExecutor(false)
-            .withLocalAgent(false)
-            .withTaskQueueServer(false)
             .addModules(binder -> {
                 binder.bind(ConfigLoaderManager.class).in(Scopes.SINGLETON);
             })

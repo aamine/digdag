@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Set;
 import com.google.inject.Inject;
-import io.digdag.core.session.StoredSessionAttemptWithSession;
 import io.digdag.spi.LogServer;
 import io.digdag.spi.LogServerFactory;
 import io.digdag.spi.LogFilePrefix;
@@ -96,19 +95,5 @@ public class LogServerManager
                         logServer.putFile(prefix, taskName, firstLogTime, agentId.toString(), gzData);
                     });
         }
-    }
-
-    public static LogFilePrefix logFilePrefixFromSessionAttempt(
-            StoredSessionAttemptWithSession attempt)
-    {
-        return LogFilePrefix.builder()
-            .siteId(attempt.getSiteId())
-            .projectId(attempt.getSession().getProjectId())
-            .workflowName(attempt.getSession().getWorkflowName())
-            .sessionTime(attempt.getSession().getSessionTime())
-            .timeZone(attempt.getTimeZone())
-            .retryAttemptName(attempt.getRetryAttemptName())
-            .createdAt(attempt.getCreatedAt())
-            .build();
     }
 }

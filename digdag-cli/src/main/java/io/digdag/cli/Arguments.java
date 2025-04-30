@@ -15,10 +15,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import io.digdag.client.config.Config;
 import io.digdag.client.config.ConfigFactory;
 import io.digdag.client.config.ConfigException;
-import io.digdag.core.agent.LocalWorkspaceManager;
 import io.digdag.core.archive.ProjectArchive;
-import io.digdag.core.archive.ProjectArchiveLoader;
-import io.digdag.core.archive.WorkflowResourceMatcher;
 import io.digdag.core.config.ConfigLoaderManager;
 import static java.util.Locale.ENGLISH;
 import static io.digdag.core.archive.ProjectArchive.WORKFLOW_FILE_SUFFIX;
@@ -77,27 +74,6 @@ public class Arguments
             }
         }
         nest.set(nestKeys[nestKeys.length - 1], value);
-    }
-
-    public static ProjectArchive loadProject(ProjectArchiveLoader projectLoader, String projectDirName, Config overrideParams)
-        throws IOException
-    {
-        Path currentDirectory = Paths.get("").toAbsolutePath();
-        Path projectPath;
-        if (projectDirName == null) {
-            projectPath = currentDirectory;
-        }
-        else {
-            projectPath = Paths.get(projectDirName).normalize().toAbsolutePath();
-        }
-
-        // if projectPath is not current dir, set _project_path to overrideParams
-        if (!projectPath.equals(currentDirectory)) {
-            logger.info("Setting project path to {}", projectPath);
-            overrideParams.set(LocalWorkspaceManager.PROJECT_PATH, projectPath.toString());
-        }
-
-        return projectLoader.load(projectPath, WorkflowResourceMatcher.defaultMatcher(), overrideParams);
     }
 
     public static String normalizeWorkflowName(ProjectArchive project, String workflowNameArg)

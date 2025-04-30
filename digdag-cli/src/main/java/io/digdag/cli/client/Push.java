@@ -78,10 +78,6 @@ public class Push
 
         Injector injector = new DigdagEmbed.Bootstrap()
                 .setSystemConfig(systemConfig)
-                .withWorkflowExecutor(false)
-                .withScheduleExecutor(false)
-                .withLocalAgent(false)
-                .withTaskQueueServer(false)
                 .addModules(binder -> {
                     binder.bind(YamlMapper.class).in(Scopes.SINGLETON);
                     binder.bind(Archiver.class).in(Scopes.SINGLETON);
