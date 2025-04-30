@@ -91,13 +91,6 @@ public class Main
 
     protected void addCommands(final JCommander jc, final Injector injector)
     {
-        jc.addCommand("init", injector.getInstance(Init.class), "new");
-        jc.addCommand("run", injector.getInstance(Run.class), "r");
-        jc.addCommand("check", injector.getInstance(Check.class), "c");
-        jc.addCommand("scheduler", injector.getInstance(Sched.class), "sched");
-
-        jc.addCommand("server", injector.getInstance(Server.class));
-
         jc.addCommand("push", injector.getInstance(Push.class));
         jc.addCommand("archive", injector.getInstance(Archive.class));
         jc.addCommand("upload", injector.getInstance(Upload.class));
@@ -121,7 +114,6 @@ public class Main
         jc.addCommand("delete", injector.getInstance(Delete.class));
         jc.addCommand("secrets", injector.getInstance(Secrets.class), "secret");
         jc.addCommand("version", injector.getInstance(Version.class), "version");
-        jc.addCommand("migrate", injector.getInstance(Migrate.class));
 
         jc.addCommand("selfupdate", injector.getInstance(SelfUpdate.class));
     }
