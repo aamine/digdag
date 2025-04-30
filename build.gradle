@@ -365,79 +365,13 @@ wrapper {
     gradleVersion = '6.9.2'
 }
 
-project(':digdag-ui') {
-    task dependenciesUi {
-        doFirst {
-            exec {
-                // npm ci requires npm version 5.7 or more.
-                commandLine System.env.NPM ?: "npm", "ci"
-            }
-        }
-    }
-
-    task buildUi {
-        inputs.files fileTree(dir: ".", include: ["*.js", "*.jsx", "*.ts", "*.tsx", "config/*"])
-        outputs.dir "public"
-
-        doFirst {
-            exec {
-                commandLine System.env.NPM ?: "npm", "run", "build"
-                environment "SHA", "assets"
-            }
-        }
-
-        dependsOn('dependenciesUi')
-
-        // include public/* in the jar file
-        processResources {
-            from '.'
-            include 'public/**/*'
-        }
-        processResources.dependsOn('buildUi')
-    }
-
-    task testUi {
-        doFirst {
-            exec {
-                commandLine System.env.NPM ?: "npm", "run", "test"
-            }
-        }
-
-        dependsOn('dependenciesUi')
-    }
-    test.dependsOn('testUi')
-
-    task checkUi {
-        doFirst {
-            exec {
-                commandLine System.env.NPM ?: "npm", "run", "lint"
-            }
-            exec {
-                commandLine System.env.NPM ?: "npm", "run", "type"
-            }
-        }
-
-        dependsOn('dependenciesUi')
-    }
-    check.dependsOn('checkUi')
-}
-
 project(':digdag-cli') {
     apply plugin: 'com.github.johnrengelman.shadow'
 
-    // Include digdag-ui in the shadow jar which are not in the dependencies
-    // of digdag-cli but should be included.
     configurations {
         shadow {
             extendsFrom runtime
         }
-    }
-
-    if (!project.hasProperty("withoutUi")) {
-        dependencies {
-            shadow project(':digdag-ui')
-        }
-        shadowJar.dependsOn(project(':digdag-ui').jar)
     }
 
     shadowJar {
@@ -503,7 +437,6 @@ task swaggerYaml(dependsOn: ':digdag-cli:shadowJar') {
 clean {
     delete 'classpath'
     delete 'pkg'
-    delete 'digdag-ui/public'
 }
 
 task release() {
