@@ -1,9 +1,0 @@
-timezone: UTC
-
-# dependent tasks use carried parameters
-+export_params_dependent1:
-  py>: tasks.params.show_export
-
-# all dependent tasks also use carried parameters
-+export_params_dependent2:
-  py>: tasks.params.show_export

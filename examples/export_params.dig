@@ -1,8 +1,0 @@
-timezone: UTC
-
-+set:
-  py>: tasks.export_params.set_my_param
-
-+get:
-  py>: tasks.export_params.show_my_param
-
