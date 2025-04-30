@@ -21,7 +21,6 @@ import com.google.inject.Scopes;
 import com.google.inject.util.Modules;
 import io.digdag.commons.ThrowablesUtil;
 import io.digdag.core.acroute.AccountRoutingModule;
-import io.digdag.core.notification.NotificationModule;
 import io.digdag.core.config.ConfigModule;
 import io.digdag.core.log.LogModule;
 import io.digdag.core.plugin.PluginSet;
@@ -135,7 +134,6 @@ public class DigdagEmbed
                     new SystemPluginModule(systemPlugins),
                     new LogModule(),
                     new ConfigModule(),
-                    new NotificationModule(),
                     new EnvironmentModule(environment),
                     new AccountRoutingModule(),
                     (binder) -> {
