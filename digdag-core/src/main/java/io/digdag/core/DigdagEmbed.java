@@ -22,7 +22,6 @@ import com.google.inject.util.Modules;
 import io.digdag.commons.ThrowablesUtil;
 import io.digdag.core.acroute.AccountRoutingModule;
 import io.digdag.core.config.ConfigModule;
-import io.digdag.core.log.LogModule;
 import io.digdag.core.plugin.PluginSet;
 import io.digdag.core.plugin.DynamicPluginModule;
 import io.digdag.core.plugin.SystemPluginModule;
@@ -132,7 +131,6 @@ public class DigdagEmbed
                         .registerModule(new JacksonTimeModule()),
                     new DynamicPluginModule(),
                     new SystemPluginModule(systemPlugins),
-                    new LogModule(),
                     new ConfigModule(),
                     new EnvironmentModule(environment),
                     new AccountRoutingModule(),
