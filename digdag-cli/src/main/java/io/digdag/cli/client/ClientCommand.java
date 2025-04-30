@@ -12,7 +12,6 @@ import io.digdag.client.api.Id;
 import io.digdag.client.api.RestVersionCheckResult;
 import io.digdag.core.plugin.PluginSet;
 import io.digdag.spi.DigdagClientConfigurator;
-import io.digdag.standards.Proxies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

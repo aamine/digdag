@@ -1,4 +1,4 @@
-package io.digdag.standards;
+package io.digdag.cli.client;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Optional;

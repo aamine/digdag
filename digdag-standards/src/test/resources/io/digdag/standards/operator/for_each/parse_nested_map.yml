@@ -1,3 +1,0 @@
-_command: '{"a":[1,2]}'
-_do:
-  echo>: value is ${a}

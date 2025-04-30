@@ -1,6 +1,0 @@
-_command:
-  from: 1
-  to: 8
-  slices: 3
-_do:
-  echo>: do
