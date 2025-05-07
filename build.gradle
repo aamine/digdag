@@ -53,8 +53,8 @@ subprojects {
     apply plugin: 'signing'
     apply plugin: 'com.github.spotbugs'
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
